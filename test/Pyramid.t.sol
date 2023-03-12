@@ -15,9 +15,11 @@ contract PyramidTest is Test {
     function subtestPyramid(uint size) public {
         bytes memory str = bytes(pyramid.run(size));
         assertEq(str.length, size * (size + 1) / 2 + size);
+
         uint j = 0;
         uint t = 1;
         uint a = 0;
+
         for (uint i = 0; i < str.length; i++) {
             if (str[i] == '\n') {
                 a |= t ^ i;
@@ -27,6 +29,7 @@ contract PyramidTest is Test {
                 assertEq(str[i], '*');
             }
         }
+        
         assertEq(a, 0);
     }
 
